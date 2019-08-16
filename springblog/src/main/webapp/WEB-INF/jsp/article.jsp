@@ -35,7 +35,7 @@
   <div class="content-wrap">
     <div class="content">
       <header class="article-header">
-        <h1 class="article-title"><a href="article.html">php如何判断一个日期的格式是否正确</a></h1>
+        <h1 class="article-title"><a href="article.html">${article.title}</a></h1>
         <div class="article-meta"> <span class="item article-meta-time">
           <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：${article.createtime}"><i class="glyphicon glyphicon-time"></i><fmt:formatDate value="${article.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></time>
           </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区"><i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：${article.category.name}"><i class="glyphicon glyphicon-list"></i> <a href="program" title="">${article.category.name}</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：${article.readcnt}"><i class="glyphicon glyphicon-eye-open"></i> 共${article.readcnt}人围观</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span> </div>
