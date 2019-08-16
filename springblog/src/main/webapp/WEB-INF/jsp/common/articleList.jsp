@@ -7,9 +7,9 @@
       </div>
       
       <c:forEach items="${aList}" var="a">
-      	<article class="excerpt excerpt-1"><a class="focus" href="article.html" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
-	        <header><a class="cat" href="program">${a.category.name}<i></i></a>
-	          <h2><a href="article.html" title="">${a.title}</a></h2>
+      	<article class="excerpt excerpt-1"><a class="focus" href="article?id=${a.id}" title=""><img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt=""></a>
+	        <header><a class="cat" href="category?id=${a.category.id}">${a.category.name}<i></i></a>
+	          <h2><a href="article?id=${a.category.id}" title="">${a.title}</a></h2>
 	        </header>
 	        <p class="meta">
 	          <time class="time"><i class="glyphicon glyphicon-time"></i> ${a.createtime}</time>

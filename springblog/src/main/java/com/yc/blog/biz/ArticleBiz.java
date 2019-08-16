@@ -33,5 +33,19 @@ public class ArticleBiz {
 		PageHelper.startPage(page,5);
 		return am.selectByExampleWithBLOBs(example);
 	}
+	/**
+	 * 阅读文章
+	 */
+	
+	public Article read(int id) {
+		ArticleExample example = new ArticleExample();
+		example.createCriteria().andIdEqualTo(id);
+		Article a= am.selectByPrimaryKey(id);
+		//更新阅读次数
+		
+		a.setReadcnt((a.getReadcnt() == null ? 0 : a.getReadcnt()) +1 );
+		am.updateByPrimaryKey(a);
+		return a;
+	}
 	
 }

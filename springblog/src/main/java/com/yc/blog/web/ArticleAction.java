@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yc.blog.bean.Article;
 import com.yc.blog.bean.Category;
 import com.yc.blog.biz.ArticleBiz;
 import com.yc.blog.biz.CategoryBiz;
@@ -31,7 +32,7 @@ public class ArticleAction {
 	@GetMapping("index")
 	public String index(@RequestParam(defaultValue="1") int page,Model model) {
 		//
-		model.addAttribute("alist",abiz.queryNewArticle(page));
+		model.addAttribute("aList",abiz.queryNewArticle(page));
 		return "index";
 	}
 	
@@ -42,4 +43,12 @@ public class ArticleAction {
 		return "category";	
 	}
 	
+	
+	//显示文章	
+	@GetMapping("article")
+	public String article(int id, Model model ) {
+		Article a = abiz.read(id);
+		model.addAttribute(a);
+		return "article";
+	}
 }
