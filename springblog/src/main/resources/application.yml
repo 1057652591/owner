@@ -1,0 +1,34 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/blog
+    username: root
+    password: a
+    driver-class-name: com.mysql.jdbc.Driver
+    
+  mail:
+    #邮箱服务器地址
+    host: smtp.qq.com
+    #用户名
+    username: 1057652591@qq.com
+    #发送密码
+    password: botpbmstunzcbeie
+    # 默认字符集编码
+    default-encoding: UTF-8
+    
+#发送地址
+mail: 
+  fromMail: 
+    addr: 1057652591@qq.com
+    
+    
+logging: 
+  level:
+    com:
+      yc: debug
+
+         
