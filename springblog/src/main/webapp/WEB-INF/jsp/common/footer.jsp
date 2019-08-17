@@ -48,7 +48,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="loginModalUserNmae">用户名</label>
-            <input type="text" class="form-control" id="loginModalUserNmae" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
+            <input type="text" class="form-control" id="loginModalUserName" placeholder="请输入用户名" autofocus maxlength="15" autocomplete="off" required>
           </div>
           <div class="form-group">
             <label for="loginModalUserPwd">密码</label>
@@ -57,12 +57,33 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="submit" class="btn btn-primary">登录</button>
+          <button type="button" onclick="login()" class="btn btn-primary">登录</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+	function login(){
+		var url = "login";
+		var pwd= loginModalUserPwd.value;
+		var name=loginModalUserName.value;
+		console.log(pwd+name);
+		var param = {name:name,password:pwd};
+		var callback = function(result){
+			if(result.code == 1){
+				$(".login").text("欢迎：" + result.data.cnName);
+				//抑制登录窗口下次跳出
+				$(".login").attr("data-target","");
+				
+				$('#loginModal').modal('hide');				
+			}else{
+				alert(result.msg);
+			}
+		};
+		$.post(url,param,callback);
+	}
+</script>
 <!--右键菜单列表-->
 <div id="rightClickMenu">
   <ul class="list-group rightClickMenuList">

@@ -221,13 +221,43 @@ $(function(){
 		promptText.text('正在提交...');
 		$.ajax({   
 			type:"POST",
-			url:"test.php?id=" + articleid,
-			//url:"/Article/comment/id/" + articleid,   
-			data:"commentContent=" + replace_em(commentContent.val()),   
+			url:"comment?articleid=" + articleid,
+ 
+			data:"content=" + replace_em(commentContent.val()),   
 			cache:false, //不缓存此页面  
 			success:function(data){
-				alert(data);
-				promptText.text('评论成功!');
+				
+				if(data.code == -1){
+					var msgs = "";
+					for(var i=0; i<data.data.length; i++){
+						msgs += data.data[i].defaultMessage +"\r\t";
+					}
+					alert(msgs);
+				}else{
+					alert(data.msg);
+				}
+				promptText.text(data.msg);
+				if(data.code == 1){
+					//评论成功！ 要更新评论列表
+					var dataIndex = $(".comment-f").last().attr("data-index");
+					var index = parseInt(dataIndex);
+					index ++;
+					var html = 
+						"<ol class='commentlist'>" +
+						"          <li class='comment-content'><span class='comment-f' data-index='???'>#???</span>" + 
+						"            <div class='comment-avatar'><img class='avatar' src='images/icon/icon.png' alt='' /></div>" + 
+						"            <div class='comment-main'>" + 
+						"              <p>来自<span class='address'>河南郑州</span>的用户<span class='time'>(????)</span><br />" + 
+						"                ????</p>" + 
+						"            </div>" + 
+						"          </li>" + 
+						"        </ol>";
+					html = html.replace("???",index);
+					html = html.replace("???",index);
+					html = html.replace("????",data.data.createtime);
+					html = html.replace("????",data.data.content);
+					$(".quotes").before(html);
+				}			
 			    commentContent.val(null);
 				$(".commentlist").fadeIn(300);
 				/*$(".commentlist").append();*/

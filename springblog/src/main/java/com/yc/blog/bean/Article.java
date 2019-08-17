@@ -2,6 +2,7 @@ package com.yc.blog.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Article implements Serializable {
 	//文章分类对象
@@ -14,6 +15,18 @@ public class Article implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	
+
+	private List<Comment> comments;
+		
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	private Integer id;
