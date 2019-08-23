@@ -47,5 +47,22 @@ public class ArticleBiz {
 		am.updateByPrimaryKey(a);
 		return a;
 	}
+
+	public void save(Article article) {
+		am.insert(article);
+		
+	}
+
+	public List<Article> queryRela(Integer categoryid,Integer id) {
+		ArticleExample example = new ArticleExample();
+		example.createCriteria().andCategoryidEqualTo(categoryid).andIdNotEqualTo(id);
+		example.setOrderByClause("createTime desc");
+		PageHelper.startPage(1,5);
+		return am.selectByExampleWithBLOBs(example);
+	}
+
+	
+
+	
 	
 }

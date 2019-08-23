@@ -51,14 +51,9 @@
           <h3>相关推荐</h3>
         </div>
         <ul>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
-          <li><a href="article.html">php如何判断一个日期的格式是否正确</a></li>
+        	<c:forEach items="${rwelaList}" var="r">
+          		<li><a href="article?id=${r.id}">${r.title}</a></li>
+          	</c:forEach>
         </ul>
       </div>
       <div class="title" id="comment">
@@ -98,7 +93,11 @@
 	          </li>
 	        </ol>
         </c:forEach>
-        <div class="quotes"><span class="disabled">首页</span><span class="disabled">上一页</span><a class="current">1</a><a href="">2</a><span class="disabled">下一页</span><span class="disabled">尾页</span></div>
+        
+        <div class="quotes" style="display:none">
+	        <a id="commPage" href="article">下一页</a>
+
+        </div>
       </div>
     </div>
   </div>
@@ -165,13 +164,51 @@
   </aside>
 </section>
 <jsp:include page="common/footer.jsp"></jsp:include>
+
+<script type="text/javascript" src="js/jquery.ias.js"></script>
+<script type="text/javascript">
+//无限滚动反翻页
+ias=jQuery.ias({
+	history: false,
+	container : '#postcomments',
+	item: '.commentlist',
+	pagination: '.quotes',
+	next: '#commPage',
+	trigger: '查看更多',
+	loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
+	triggerPageThreshold: 5	
+}); 
+var page = 1;
+ias.on('load',function(event){
+	event.ajaxOptions.data = {
+				page : ++page,
+				id : ${article.id}
+			};
+});
+
+/**
+ * 加载等待显示的图片
+ * @returns
+ */
+ias.extension(new IASSpinnerExtension({
+    src: '/images/loading.gif', // optionally
+}));
+
+ias.extension(new IASTriggerExtension({
+    text: '查看更多', // 鼠标点击加载提示的文字
+    offset: 2  	//到第几页后，开始鼠标点击加载
+}));
+
+
+
+</script>
 <script src="js/jquery.qqFace.js"></script> 
 <script type="text/javascript">
 $(function(){
 	$('.emotion').qqFace({
 		id : 'facebox', 
 		assign:'comment-textarea', 
-		path:'/Home/images/arclist/'	//表情存放的路径
+		path:'/images/arclist/'	//表情存放的路径
 	});
  });   
 </script>

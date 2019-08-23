@@ -10,6 +10,17 @@ spring:
     password: a
     driver-class-name: com.mysql.jdbc.Driver
     
+  http:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+      
+  resources:
+    staticLocations:
+      - classpath:/static/
+      - file:/e:/blog/
+    
   mail:
     #邮箱服务器地址
     host: smtp.qq.com
@@ -29,6 +40,10 @@ mail:
 logging: 
   level:
     com:
-      yc: debug
+      yc: trace
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
 
          

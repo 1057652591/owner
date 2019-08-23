@@ -82,8 +82,12 @@
 		    <artifactId>pagehelper-spring-boot-starter</artifactId>
 		    <version>1.2.10</version>
 		</dependency>
-		
-						
+							
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency>
+								
 	</dependencies>
 	<build>
 		<plugins>

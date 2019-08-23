@@ -100,11 +100,11 @@ $("#gotop").click(function () {
  
 //图片延时加载
 $("img.thumb").lazyload({
-    placeholder: "/Home/images/occupying.png",
+    placeholder: "/images/occupying.png",
     effect: "fadeIn"
 });
 $(".single .content img").lazyload({
-    placeholder: "/Home/images/occupying.png",
+    placeholder: "/images/occupying.png",
     effect: "fadeIn"
 });
  
@@ -117,26 +117,8 @@ document.body.onselectstart = document.body.ondrag = function () {
 $('[data-toggle="tooltip"]').tooltip();
  
  
-//无限滚动反翻页
-jQuery.ias({
-	history: false,
-	container : '.content',
-	item: '.excerpt',
-	pagination: '.pagination',
-	next: '.next-page a',
-	trigger: '查看更多',
-	loader: '<div class="pagination-loading"><img src="/Home/images/loading.gif" /></div>',
-	triggerPageThreshold: 5,
-	onRenderComplete: function() {
-		$('.excerpt .thumb').lazyload({
-			placeholder: '/Home/images/occupying.png',
-			threshold: 400
-		});
-		$('.excerpt img').attr('draggable','false');
-		$('.excerpt a').attr('draggable','false');
-	}
-});
- 
+
+
 //鼠标滚动超出侧边栏高度绝对定位
 $(window).scroll(function () {
     var sidebar = $('.sidebar');
@@ -245,7 +227,7 @@ $(function(){
 					var html = 
 						"<ol class='commentlist'>" +
 						"          <li class='comment-content'><span class='comment-f' data-index='???'>#???</span>" + 
-						"            <div class='comment-avatar'><img class='avatar' src='images/icon/icon.png' alt='' /></div>" + 
+						"            <div class='comment-avatar'><img class='avatar' src='/images/icon/icon.png' alt='' /></div>" + 
 						"            <div class='comment-main'>" + 
 						"              <p>来自<span class='address'>河南郑州</span>的用户<span class='time'>(????)</span><br />" + 
 						"                ????</p>" + 
@@ -274,7 +256,7 @@ $(function(){
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
 	str = str.replace(/\>/g,'&gt;');
-	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/Home/images/arclist/$1.gif" border="0" />');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/images/arclist/$1.gif" border="0" />');
 	return str;
 }
 

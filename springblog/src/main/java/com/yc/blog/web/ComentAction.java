@@ -25,9 +25,6 @@ public class ComentAction {
 	
 	@PostMapping("comment")
 	public Result comment(@Valid Comment comm ,Errors errors,@SessionAttribute(name="loginedUser",required=false) User user) {
-		if(user == null) {
-			return new Result(0, "请先登录系统！！");
-		}
 		
 		//设置评论人id
 		comm.setCreateby(user.getId());		

@@ -34,7 +34,59 @@
           <li class="prev-page"></li>
           <li class="active"><span>1</span></li>
           <li><a href="?page=2">2</a></li>
-          <li class="next-page"><a href="?page=2">下一页</a></li>
+          <li class="next-page"><a href="index">下一页</a></li>
           <li><span>共 2 页</span></li>
         </ul>
       </nav>
+      
+      <script type="text/javascript" src="js/jquery.ias.js"></script>
+	<script type="text/javascript">
+	//无限滚动反翻页
+	var ias=jQuery.ias({
+		history: false,
+		container : '.content',
+		item: '.excerpt',
+		pagination: '.pagination',
+		next: '.next-page a',
+		//trigger: '查看更多',
+		//loader: '<div class="pagination-loading"><img src="/images/loading.gif" /></div>',
+		triggerPageThreshold: 5	
+	}); 
+	var page = 1;
+	ias.on('load',function(event){
+		event.ajaxOptions.data = {
+				page : ++page
+				
+		};
+	});
+
+
+	/**
+	 * 渲染完成后的时间
+	 * @param items
+	 * @returns
+	 */
+	ias.on('rendered', function(items) {
+		//沙漏
+	    $('.excerpt .thumb').lazyload({
+	    	placeholder: 'images/occupying.png',
+	    	threshold: 400
+	    });
+
+	    $('.excerpt img').attr('draggable','false');
+	    $('.excerpt a').attr('draggable','false');
+	})
+
+	/**
+	 * 加载等待显示的图片
+	 * @returns
+	 */
+	ias.extension(new IASSpinnerExtension({
+	    src: '/images/loading.gif', // optionally
+	}));
+
+	ias.extension(new IASTriggerExtension({
+	    text: '查看更多', // 鼠标点击加载提示的文字
+	    offset: 2  	//到第几页后，开始鼠标点击加载
+	}));
+	</script>
